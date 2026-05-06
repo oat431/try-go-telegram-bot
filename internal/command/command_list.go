@@ -1,6 +1,7 @@
 package command
 
 import (
+	"errors"
 	"oat431/try-go-telegram-bot/pkg/common"
 	"strings"
 
@@ -9,6 +10,10 @@ import (
 
 // When we get a command, we react accordingly
 func CommandList(bot *tgbotapi.BotAPI, chatId int64, commandText string) error {
+	if bot == nil {
+		return errors.New("telegram bot is not initialized")
+	}
+
 	var err error
 
 	parts := strings.Fields(commandText)
